@@ -19,7 +19,6 @@ encoder = rotaryio.IncrementalEncoder(board.ROTA, board.ROTB)
 radial_controller = adafruit_radial_controller.RadialController(usb_hid.devices)
 
 last_position = 0
-DETENT_MULTIPLIER = 1
 
 while True:
     debounced_switch.update()
@@ -31,5 +30,5 @@ while True:
     position = encoder.position
     delta = position - last_position
     if delta != 0:
-        radial_controller.rotate(delta * DETENT_MULTIPLIER)
+        radial_controller.rotate(delta)
         last_position = position

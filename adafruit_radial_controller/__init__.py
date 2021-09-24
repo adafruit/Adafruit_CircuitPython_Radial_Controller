@@ -46,9 +46,9 @@ class RadialController:
         self._controller = find_device(devices, usage_page=0x01, usage=0x0E)
 
         # Reuse this bytearray to send radial controller reports
-        # report[0]: button
+        # report[0]: bit 0: button
         # report[1]: rotation
-        self.report = bytearray(3)
+        self.report = bytearray(2)
 
         self._pressed = False
 
@@ -77,13 +77,12 @@ class RadialController:
 
     def rotate(self, rotation):
         """Set relative rotation value."""
-        if not -32767 <= rotation <= 32767:
-            raise ValueError("rotation must be in range -32767 to 32767")
+        if not -127 <= rotation <= 127:
+            raise ValueError("rotation must be in range -127 to 127")
         self._send(self._pressed, rotation)
 
     def _send(self, pressed, rotation):
         self.report[0] = int(pressed)
         self.report[1] = rotation & 0xFF
-        self.report[2] = (rotation >> 8) & 0xFF
 
         self._controller.send_report(self.report)

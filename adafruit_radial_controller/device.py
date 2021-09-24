@@ -63,6 +63,12 @@ def device(report_id):
 
             0xc0,             #   End Collection
             0xc0,             # End Collection
+
+            # The presence of this (even empty) System Control Collection makes the device
+            # appear in /dev/input in Linux. Don't know why this works yet.
+            0x09, 0x80,       # Usage (System Control)
+            0xa1, 0x01,       # Collection (Application)
+            0xc0,             # End Collection
             )),
         # fmt: on
         usage_page=0x01,

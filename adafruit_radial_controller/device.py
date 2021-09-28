@@ -36,6 +36,9 @@ def device(report_id):
             0x09, 0x21,       #   Usage (Puck)
             0xa1, 0x00,       #   Collection (Physical)
 
+            # The Microsoft example packs the report into 1 bit and 15 bits,
+            # but that's more work. We'll just use 1 bit of one byte and then 16 bits.
+
             # Button
             0x05, 0x09,       #     Usage Page (Buttons)
             0x09, 0x01,       #     Usage (Button 1)
@@ -46,8 +49,6 @@ def device(report_id):
             0x81, 0x02,       #     Input (Data,Var,Abs)
 
             # Padding
-            # Making the button be one byte instead of one bit does not work,
-            # so we include this padding.
             0x75, 0x07,       #     Report Size (7)
             0x95, 0x01,       #     Report Count (1)
             0x81, 0x01,       #     Input (Data,Var,Abs)
@@ -55,9 +56,13 @@ def device(report_id):
             # Rotation
             0x05, 0x01,       #     Usage Page (Generic Desktop)
             0x09, 0x37,       #     Usage (Dial)
-            0x15, 0x81,       #     Logical Minimum (-127)
-            0x25, 0x7F,       #     Logical Maximum (127)
-            0x75, 0x08,       #     Report Size (8)
+            0x55, 0x0f,       #     Unit Exponent (-1)
+            0x65, 0x14,       #     Unit (Degrees, English Rotation)
+            0x36, 0xf0, 0xf1, #     Physical Minimum (-3600)
+            0x46, 0x10, 0x0e, #     Physical Maximum (3600)
+            0x16, 0xf0, 0xf1, #     Logical Minimum (-3600)
+            0x26, 0x10, 0x0e, #     Logical Maximum (3600)
+            0x75, 0x10,       #     Report Size (16)
             0x95, 0x01,       #     Report Count (1)
             0x81, 0x06,       #     Input (Data,Var,Rel)
 
@@ -65,7 +70,7 @@ def device(report_id):
             0xc0,             # End Collection
 
             # The presence of this (even empty) System Control Collection makes the device
-            # appear in /dev/input in Linux. Don't know why this works yet.
+            # appears in /dev/input in Linux. Don't know why this works yet.
             0x09, 0x80,       # Usage (System Control)
             0xa1, 0x01,       # Collection (Application)
             0xc0,             # End Collection
@@ -74,6 +79,6 @@ def device(report_id):
         usage_page=0x01,
         usage=0x0E,
         report_ids=(report_id,),
-        in_report_lengths=(2,),
+        in_report_lengths=(3,),
         out_report_lengths=(0,),
     )

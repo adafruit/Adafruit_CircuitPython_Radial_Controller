@@ -48,7 +48,7 @@ class RadialController:
         # Reuse this bytearray to send radial controller reports
         # report[0]: bit 0: button
         # report[1]: rotation
-        self.report = bytearray(2)
+        self.report = bytearray(3)
 
         self._pressed = False
 
@@ -75,14 +75,18 @@ class RadialController:
         self.press()
         self.release()
 
-    def rotate(self, rotation):
-        """Set relative rotation value."""
-        if not -127 <= rotation <= 127:
-            raise ValueError("rotation must be in range -127 to 127")
-        self._send(self._pressed, rotation)
+    def rotate(self, degree_tenths):
+        """Set relative rotation value, in tenths of a degree.
+        A value of 1 or 10 can be too small and cause tool selection or scrolling to not work.
+        100 is a good value for a single increment in most cases."""
+
+        if not -3600 <= degree_tenths <= 3600:
+            raise ValueError("rotation must be in range -3600 to 3600")
+        self._send(self._pressed, degree_tenths)
 
     def _send(self, pressed, rotation):
         self.report[0] = int(pressed)
         self.report[1] = rotation & 0xFF
+        self.report[2] = (rotation >> 8) & 0xFF
 
         self._controller.send_report(self.report)

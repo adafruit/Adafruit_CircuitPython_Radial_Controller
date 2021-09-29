@@ -6,3 +6,6 @@
 
 .. automodule:: adafruit_radial_controller
     :members:
+
+.. automodule:: adafruit_radial_controller.device
+    :members:

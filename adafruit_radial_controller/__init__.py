@@ -18,6 +18,7 @@ Implementation Notes
   At the minimum, a radial controller is a rotary encoder plus a switch.
 
   Documentation is available from Microsoft:
+  https://docs.microsoft.com/en-us/windows-hardware/design/component-guidelines/radial-implementation-guide
 
 **Software and Dependencies:**
 
@@ -77,8 +78,10 @@ class RadialController:
 
     def rotate(self, degree_tenths):
         """Set relative rotation value, in tenths of a degree.
-        A value of 1 or 10 can be too small and cause tool selection or scrolling to not work.
-        100 is a good value for a single increment in most cases."""
+        A value of +/- 1 or 10 can be too small and cause tool selection or scrolling to not work.
+        +/- 100 is a good value for a single increment in many cases, though it causes value sliders
+        to change by 10 instead of 1.
+        """
 
         if not -3600 <= degree_tenths <= 3600:
             raise ValueError("rotation must be in range -3600 to 3600")

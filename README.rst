@@ -87,6 +87,11 @@ Or the following command to update an existing version:
 
     circup update
 
+Documentation
+=============
+
+API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/radial_controller/en/latest/>`_.
+
 Contributing
 ============
 

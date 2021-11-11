@@ -20,7 +20,7 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_Radial_Controller
 import usb_hid
 
 
-def device(report_id):
+def device(report_id: int) -> usb_hid.Device:
     """Create a `usb_hid.Device` for a radial controller.
 
     :param int report_id: The report ID to use for the device.

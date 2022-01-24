@@ -3,7 +3,7 @@ Introduction
 
 
 .. image:: https://readthedocs.org/projects/adafruit-circuitpython-radial_controller/badge/?version=latest
-    :target: https://circuitpython.readthedocs.io/projects/radial_controller/en/latest/
+    :target: https://docs.circuitpython.org/projects/radial_controller/en/latest/
     :alt: Documentation Status
 
 
@@ -90,7 +90,7 @@ Or the following command to update an existing version:
 Documentation
 =============
 
-API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/radial_controller/en/latest/>`_.
+API documentation for this library can be found on `Read the Docs <https://docs.circuitpython.org/projects/radial_controller/en/latest/>`_.
 
 Contributing
 ============

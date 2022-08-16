@@ -14,7 +14,7 @@ The radial controller report descriptor used is described by Microsoft
 """
 # pylint: enable=line-too-long
 
-__version__ = "0.0.0-auto.0"
+__version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_Radial_Controller.git"
 
 import usb_hid

@@ -79,7 +79,7 @@ following command to install:
 
 .. code-block:: shell
 
-    circup install radial_controller
+    circup install adafruit_radial_controller
 
 Or the following command to update an existing version:
 

@@ -6,8 +6,8 @@ import board
 import digitalio
 import rotaryio
 import usb_hid
-
 from adafruit_debouncer import Debouncer
+
 import adafruit_radial_controller
 
 switch = digitalio.DigitalInOut(board.SWITCH)

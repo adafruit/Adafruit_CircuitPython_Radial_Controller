@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: MIT
 
-# pylint: disable=line-too-long
 """
 `adafruit_radial_controller.device`
 ================================================================================
@@ -12,7 +11,6 @@
 The radial controller report descriptor used is described by Microsoft
 `here <https://docs.microsoft.com/en-us/windows-hardware/design/component-guidelines/radial-controller-sample-report-descriptors>`_.
 """
-# pylint: enable=line-too-long
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_Radial_Controller.git"
@@ -25,8 +23,8 @@ def device(report_id: int) -> usb_hid.Device:
 
     :param int report_id: The report ID to use for the device.
     """
+    # fmt: off
     return usb_hid.Device(
-        # fmt: off
         report_descriptor=bytes((
             0x05, 0x01,       # Usage Page (Generic Desktop)
             0x09, 0x0e,       # Usage (System Multi-Axis Controller)
@@ -76,10 +74,10 @@ def device(report_id: int) -> usb_hid.Device:
             0xa1, 0x01,       # Collection (Application)
             0xc0,             # End Collection
             )),
-        # fmt: on
         usage_page=0x01,
         usage=0x0E,
         report_ids=(report_id,),
         in_report_lengths=(3,),
         out_report_lengths=(0,),
     )
+    # fmt: on
